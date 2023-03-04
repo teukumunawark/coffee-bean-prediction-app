@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "358117169521",
+    "project_id": "coffee-beans-classification",
+    "storage_bucket": "coffee-beans-classification.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:358117169521:android:fd4fc89945b08d12a77ed0",
+        "android_client_info": {
+          "package_name": "com.example.predict_coffee"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "358117169521-310htvfk9u8ed727lt55s8379c6qhgit.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9sVqpakMsCh_P2fRpm_Vwalp27Cp_7ao"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "358117169521-310htvfk9u8ed727lt55s8379c6qhgit.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
