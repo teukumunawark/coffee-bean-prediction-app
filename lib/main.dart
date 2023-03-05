@@ -11,7 +11,6 @@ import 'package:predict_coffee/injection.dart' as injection;
 
 void main() async {
   injection.init();
-
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
