@@ -6,14 +6,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:predict_coffee/presentation/bloc/coffee_bloc.dart';
 
 import '../../../utils/constants.dart';
 import '../../bloc/image_upload_bloc.dart';
+import '../../bloc/single_predict/single_predict_bloc.dart';
 import '../button_icon_widget.dart';
 
 class ImagePrevWidget extends StatelessWidget {
-  final ImageBloc imageBloc;
+  final SingleImageBloc imageBloc;
   final XFile? data;
 
   const ImagePrevWidget(this.data, this.imageBloc, {super.key});
@@ -26,7 +26,7 @@ class ImagePrevWidget extends StatelessWidget {
 
 class ImageUploadPreview extends StatelessWidget {
   final XFile? data;
-  final ImageBloc imageBloc;
+  final SingleImageBloc imageBloc;
   const ImageUploadPreview(this.data, this.imageBloc, {Key? key})
       : super(key: key);
 
@@ -37,7 +37,7 @@ class ImageUploadPreview extends StatelessWidget {
       width: double.maxFinite,
       margin: const EdgeInsets.only(top: 15),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(25),
+        borderRadius: BorderRadius.circular(12),
         image: data == null
             ? const DecorationImage(
                 image: AssetImage('assets/images/img.jpg'),
@@ -50,7 +50,7 @@ class ImageUploadPreview extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
       ),
-      child: BlocBuilder<PredictBloc, CoffeeState>(
+      child: BlocBuilder<SinglePredictBloc, SinglePredictState>(
         builder: (context, state) {
           if (state is PredictionHasData) {
             return const ResetButtonSection();
@@ -236,7 +236,7 @@ class ResetButtonSection extends StatelessWidget {
                                     ),
                                   ),
                                   onPressed: () {
-                                    context.read<PredictBloc>().reset();
+                                    context.read<SinglePredictBloc>().reset();
                                     context.pushReplacementNamed('home');
                                   },
                                   child: Text(
