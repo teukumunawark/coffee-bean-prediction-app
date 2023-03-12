@@ -237,7 +237,9 @@ class ResetButtonSection extends StatelessWidget {
                                   ),
                                   onPressed: () {
                                     context.read<SinglePredictBloc>().reset();
-                                    context.pushReplacementNamed('home');
+                                    context.pushReplacementNamed(
+                                      'single-predict',
+                                    );
                                   },
                                   child: Text(
                                     "Reset Proses",
