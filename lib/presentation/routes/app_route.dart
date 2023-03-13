@@ -1,77 +1,61 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:predict_coffee/presentation/pages/detail_page.dart';
+import 'package:predict_coffee/presentation/pages/multi_predict_detail_page.dart';
+import 'package:predict_coffee/presentation/pages/single_predict_detail_page.dart';
 import 'package:predict_coffee/presentation/pages/home_page.dart';
 import 'package:predict_coffee/presentation/pages/login_page.dart';
+import 'package:predict_coffee/presentation/pages/multi_predict_page.dart';
 import 'package:predict_coffee/presentation/pages/register_page.dart';
+import 'package:predict_coffee/presentation/pages/single_predict_page.dart';
 import 'package:predict_coffee/presentation/pages/splash_page.dart';
+import 'package:predict_coffee/presentation/routes/component_route.dart';
+
+import '../pages/history_page.dart';
 
 final router = GoRouter(
   routes: [
-    GoRoute(
+    goRoute(
       name: 'splash',
       path: '/',
-      pageBuilder: (context, state) => CustomTransitionPage(
-        key: state.pageKey,
-        child: const SplashPage(),
-        transitionsBuilder: (
-          BuildContext context,
-          Animation<double> animation,
-          Animation<double> secondaryAnimation,
-          Widget child,
-        ) {
-          return FadeTransition(
-            opacity: CurveTween(curve: Curves.easeInOutCirc).animate(animation),
-            child: child,
-          );
-        },
-      ),
+      child: const SplashPage(),
     ),
-    GoRoute(
+    goRoute(
       name: 'register',
       path: '/register',
-      pageBuilder: (context, state) => CustomTransitionPage(
-        key: state.pageKey,
-        child: const RegisterPage(),
-        transitionsBuilder: (
-          BuildContext context,
-          Animation<double> animation,
-          Animation<double> secondaryAnimation,
-          Widget child,
-        ) {
-          return FadeTransition(
-            opacity: CurveTween(curve: Curves.easeInOutCirc).animate(animation),
-            child: child,
-          );
-        },
-      ),
+      child: const RegisterPage(),
     ),
-    GoRoute(
+    goRoute(
       name: 'login',
       path: '/login',
-      pageBuilder: (context, state) => CustomTransitionPage(
-        key: state.pageKey,
-        child: const LoginPage(),
-        transitionsBuilder: (
-          BuildContext context,
-          Animation<double> animation,
-          Animation<double> secondaryAnimation,
-          Widget child,
-        ) {
-          return FadeTransition(
-            opacity: CurveTween(curve: Curves.easeInOutCirc).animate(animation),
-            child: child,
-          );
-        },
-      ),
+      child: const LoginPage(),
     ),
-    GoRoute(
+    goRoute(
       name: 'home',
       path: '/home',
+      child: const HomePage(),
+    ),
+    goRoute(
+      name: 'single-predict',
+      path: '/single',
+      child: const SinglePredictPage(),
+    ),
+    goRoute(
+      name: 'multi-predict',
+      path: '/multi',
+      child: const MultiPredictPage(),
+    ),
+    goRoute(
+      name: 'history',
+      path: '/history',
+      child: const HistoryPage(),
+    ),
+    GoRoute(
+      name: 'single-detail',
+      path: '/single-detail',
       pageBuilder: (context, state) => CustomTransitionPage(
         key: state.pageKey,
         arguments: state.extra,
-        child: const HomePage(),
+        child: const SinglePredictDetailPage(),
         transitionsBuilder: (
           BuildContext context,
           Animation<double> animation,
@@ -86,12 +70,12 @@ final router = GoRouter(
       ),
     ),
     GoRoute(
-      name: 'detail',
-      path: '/detail',
+      name: 'multi-detail',
+      path: '/multi-detail',
       pageBuilder: (context, state) => CustomTransitionPage(
         key: state.pageKey,
         arguments: state.extra,
-        child: const DetailPage(),
+        child: const MultiPredictDetailPage(),
         transitionsBuilder: (
           BuildContext context,
           Animation<double> animation,
@@ -104,6 +88,6 @@ final router = GoRouter(
           );
         },
       ),
-    ),
+    )
   ],
 );
