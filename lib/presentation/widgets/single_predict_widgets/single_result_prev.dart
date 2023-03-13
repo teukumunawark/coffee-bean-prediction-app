@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
 import '../../../utils/constants.dart';
-import '../../bloc/single_predict/single_predict_bloc.dart';
+import '../../states_bloc/single_predict/single_predict_bloc.dart';
 
 class SingleResultPrev extends StatelessWidget {
   const SingleResultPrev({super.key});

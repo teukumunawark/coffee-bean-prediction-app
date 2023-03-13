@@ -8,8 +8,8 @@ import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../../utils/constants.dart';
-import '../../bloc/image_upload_bloc.dart';
-import '../../bloc/single_predict/single_predict_bloc.dart';
+import '../../states_bloc/image_upload_bloc.dart';
+import '../../states_bloc/single_predict/single_predict_bloc.dart';
 import '../button_icon_widget.dart';
 
 class ImagePrevWidget extends StatelessWidget {
@@ -33,9 +33,8 @@ class ImageUploadPreview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 290,
+      height: 250,
       width: double.maxFinite,
-      margin: const EdgeInsets.only(top: 15),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
         image: data == null

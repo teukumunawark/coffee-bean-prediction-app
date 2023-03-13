@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:predict_coffee/presentation/bloc/single_predict/single_predict_bloc.dart';
 import 'package:predict_coffee/presentation/widgets/dialog_widget.dart';
 import 'package:predict_coffee/utils/constants.dart';
 
-import '../../bloc/image_upload_bloc.dart';
+import '../../states_bloc/image_upload_bloc.dart';
+import '../../states_bloc/single_predict/single_predict_bloc.dart';
 
 class ButtonSectionWidget extends StatelessWidget {
   final XFile? dataImage;

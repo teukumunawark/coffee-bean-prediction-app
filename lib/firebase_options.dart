@@ -63,7 +63,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '358117169521',
     projectId: 'coffee-beans-classification',
     storageBucket: 'coffee-beans-classification.appspot.com',
-    iosClientId: '358117169521-pub5dav61rn8ngcmtnulemv9qpurpice.apps.googleusercontent.com',
+    iosClientId:
+        '358117169521-pub5dav61rn8ngcmtnulemv9qpurpice.apps.googleusercontent.com',
     iosBundleId: 'com.example.predictCoffee',
   );
 }
