@@ -1,15 +1,16 @@
 // ignore_for_file: avoid_print
 import 'package:dio/dio.dart';
-import 'package:predict_coffee/data/models/single_predict_models/prediction.dart';
 import 'package:predict_coffee/data/models/single_predict_models/single_predict_models.dart';
+import 'package:predict_coffee/data/models/single_predict_models/single_predict_response.dart';
 
 import '../../utils/exception.dart';
 import '../models/multi_predict_models/multi_predict_models.dart';
-import '../models/multi_predict_models/prediction.dart';
 
 abstract class ApiDataSource {
   Future<List<PredictionModel>> createSinglePredict(String filePath);
-  Future<List<Prediction>> createMultiPredict(List<String> filePaths);
+  Future<List<List<MultiPrediction>>> createMultiPredict(
+    List<String> filePaths,
+  );
 }
 
 class CoffeeDataSourceIMPL extends ApiDataSource {
@@ -41,7 +42,8 @@ class CoffeeDataSourceIMPL extends ApiDataSource {
   }
 
   @override
-  Future<List<Prediction>> createMultiPredict(List<String> filePaths) async {
+  Future<List<List<MultiPrediction>>> createMultiPredict(
+      List<String> filePaths) async {
     List<MultipartFile> files = [];
 
     for (String filePath in filePaths) {
@@ -49,7 +51,7 @@ class CoffeeDataSourceIMPL extends ApiDataSource {
       files.add(await MultipartFile.fromFile(filePath, filename: fileName));
     }
 
-    FormData formData = FormData.fromMap({'files': files});
+    FormData formData = FormData.fromMap({'file': files});
 
     Response response = await dio.post(
       "$apiURL/multipredictions",
@@ -58,8 +60,9 @@ class CoffeeDataSourceIMPL extends ApiDataSource {
     );
 
     if (response.statusCode == 200) {
-      print(response.data);
-      return MultiPredictModels.fromJson(response.data).prediction;
+      return (response.data as List<dynamic>)
+          .map((data) => MultiPredictions.fromJson(data).prediction)
+          .toList();
     } else {
       throw ServerException();
     }

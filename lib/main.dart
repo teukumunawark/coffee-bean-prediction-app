@@ -1,20 +1,21 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:predict_coffee/presentation/bloc/auth/auth_bloc.dart';
-import 'package:predict_coffee/presentation/bloc/coffee_bloc.dart';
+import 'package:predict_coffee/presentation/states_bloc/single_predict/single_predict_bloc.dart';
+import 'package:predict_coffee/presentation/states_bloc/multi_predict/multi_predict_bloc.dart';
+import 'package:predict_coffee/presentation/states_bloc/auth/auth_bloc.dart';
 import 'package:predict_coffee/utils/constants.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'presentation/routes/app_route.dart';
+import 'package:flutter/material.dart';
 import 'firebase_options.dart';
 
 import 'package:predict_coffee/injection.dart' as injection;
 
 void main() async {
-  injection.init();
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
+  await injection.init();
 
   runApp(const MyApp());
 }
@@ -27,10 +28,16 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (_) => injection.locator<PredictBloc>(),
+          create: (_) => injection.locator<SinglePredictBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => injection.locator<MultiPredictBloc>(),
         ),
         BlocProvider(
           create: (_) => injection.locator<AuthBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => injection.locator<HistoryBloc>(),
         ),
       ],
       child: MaterialApp.router(
