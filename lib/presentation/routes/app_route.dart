@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:predict_coffee/presentation/pages/multi_detail_card.dart';
 import 'package:predict_coffee/presentation/pages/multi_predict_detail_page.dart';
 import 'package:predict_coffee/presentation/pages/single_predict_detail_page.dart';
 import 'package:predict_coffee/presentation/pages/home_page.dart';
@@ -76,6 +77,26 @@ final router = GoRouter(
         key: state.pageKey,
         arguments: state.extra,
         child: const MultiPredictDetailPage(),
+        transitionsBuilder: (
+          BuildContext context,
+          Animation<double> animation,
+          Animation<double> secondaryAnimation,
+          Widget child,
+        ) {
+          return FadeTransition(
+            opacity: CurveTween(curve: Curves.easeInOutCirc).animate(animation),
+            child: child,
+          );
+        },
+      ),
+    ),
+    GoRoute(
+      name: 'multi-card',
+      path: '/multi-card-detail',
+      pageBuilder: (context, state) => CustomTransitionPage(
+        key: state.pageKey,
+        arguments: state.extra,
+        child: const MultiCardDetail(),
         transitionsBuilder: (
           BuildContext context,
           Animation<double> animation,

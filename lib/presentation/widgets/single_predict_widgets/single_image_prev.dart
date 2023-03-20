@@ -56,7 +56,11 @@ class ImageUploadPreview extends StatelessWidget {
           }
 
           return Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
+            padding: const EdgeInsets.only(
+              left: 10,
+              right: 10,
+              bottom: 10,
+            ),
             child: Stack(
               children: [
                 Align(
@@ -123,7 +127,7 @@ class ImageUploadPreview extends StatelessWidget {
                                 ),
                               ),
                               ButtonIconComponet(
-                                buttonRadius: 50,
+                                buttonRadius: 12,
                                 buttonColor:
                                     data == null ? kPrimary : Colors.green,
                                 child: Padding(
@@ -189,69 +193,60 @@ class ResetButtonSection extends StatelessWidget {
         Align(
           alignment: Alignment.center,
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(25),
+            borderRadius: BorderRadius.circular(12),
             child: BackdropFilter(
               filter: ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0),
               child: Container(
-                height: 290,
-                width: double.maxFinite,
+                height: 220,
+                width: 300,
                 color: Colors.white10,
                 child: Align(
                   alignment: Alignment.bottomRight,
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                      bottom: 20,
-                      left: 20,
-                      right: 20,
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(25),
-                      child: BackdropFilter(
-                        filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                        child: Container(
-                          height: 245,
-                          padding: const EdgeInsets.all(7),
-                          width: double.maxFinite,
-                          color: Colors.black12,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              const SizedBox(),
-                              Image.asset(
-                                'assets/images/ia-image.png',
-                                width: 140,
-                              ),
-                              const SizedBox(),
-                              SizedBox(
-                                width: double.maxFinite,
-                                child: TextButton(
-                                  style: TextButton.styleFrom(
-                                    backgroundColor: kSecondery,
-                                    padding: const EdgeInsets.symmetric(
-                                      vertical: 15,
-                                    ),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(25),
-                                    ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: BackdropFilter(
+                      filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                      child: Container(
+                        height: 245,
+                        padding: const EdgeInsets.all(7),
+                        width: double.maxFinite,
+                        color: Colors.black12,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const SizedBox(),
+                            Image.asset(
+                              'assets/images/ia-image.png',
+                              width: 140,
+                            ),
+                            const SizedBox(),
+                            SizedBox(
+                              width: double.maxFinite,
+                              child: TextButton(
+                                style: TextButton.styleFrom(
+                                  backgroundColor: kSecondery,
+                                  padding: const EdgeInsets.symmetric(
+                                    vertical: 15,
                                   ),
-                                  onPressed: () {
-                                    context.read<SinglePredictBloc>().reset();
-                                    context.pushReplacementNamed(
-                                      'single-predict',
-                                    );
-                                  },
-                                  child: Text(
-                                    "Reset Proses",
-                                    style: kHeading5.copyWith(
-                                      fontSize: 15,
-                                      color: kPrimary,
-                                      fontWeight: FontWeight.w600,
-                                    ),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(25),
+                                  ),
+                                ),
+                                onPressed: () {
+                                  context.read<SinglePredictBloc>().reset();
+                                  context.pushReplacementNamed('home');
+                                },
+                                child: Text(
+                                  "Reset Proses",
+                                  style: kHeading5.copyWith(
+                                    fontSize: 15,
+                                    color: kPrimary,
+                                    fontWeight: FontWeight.w600,
                                   ),
                                 ),
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
