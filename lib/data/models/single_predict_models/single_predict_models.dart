@@ -1,21 +1,37 @@
 import 'package:equatable/equatable.dart';
-import 'package:predict_coffee/data/models/single_predict_models/prediction.dart';
 
-class SinglePredictModels extends Equatable {
-  final List<PredictionModel> predict;
+import '../../../domain/entities/predict_entity.dart';
 
-  const SinglePredictModels({required this.predict});
+class PredictionModel extends Equatable {
+  final String className;
+  final double score;
+  final double probability;
 
-  factory SinglePredictModels.fromJson(Map<String, dynamic> json) =>
-      SinglePredictModels(
-        predict: List<PredictionModel>.from((json["predictions"] as List)
-            .map((x) => PredictionModel.fromJson(x))),
+  const PredictionModel({
+    required this.className,
+    required this.score,
+    required this.probability,
+  });
+
+  factory PredictionModel.fromJson(Map<String, dynamic> json) =>
+      PredictionModel(
+        className: json['class_name'],
+        score: json['score'],
+        probability: json['probability'],
       );
 
   Map<String, dynamic> toJson() => {
-        "results": List<dynamic>.from(predict.map((x) => x.toJson())),
+        'class_name': className,
+        'score': score,
+        'probability': probability,
       };
 
+  PredictionEntity toEntity() => PredictionEntity(
+        className: className,
+        score: score,
+        probability: probability,
+      );
+
   @override
-  List<Object> get props => [predict];
+  List<Object?> get props => [className, score, probability];
 }
