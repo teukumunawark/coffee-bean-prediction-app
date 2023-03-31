@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:predict_coffee/presentation/pages/information_page.dart';
 import 'package:predict_coffee/presentation/pages/multi_detail_card.dart';
 import 'package:predict_coffee/presentation/pages/multi_predict_detail_page.dart';
 import 'package:predict_coffee/presentation/pages/single_predict_detail_page.dart';
@@ -36,6 +36,11 @@ final router = GoRouter(
       child: const HomePage(),
     ),
     goRoute(
+      name: 'information',
+      path: '/information',
+      child: const InformationPage(),
+    ),
+    goRoute(
       name: 'single-predict',
       path: '/single',
       child: const SinglePredictPage(),
@@ -50,65 +55,20 @@ final router = GoRouter(
       path: '/history',
       child: const HistoryPage(),
     ),
-    GoRoute(
+    goRoute(
       name: 'single-detail',
       path: '/single-detail',
-      pageBuilder: (context, state) => CustomTransitionPage(
-        key: state.pageKey,
-        arguments: state.extra,
-        child: const SinglePredictDetailPage(),
-        transitionsBuilder: (
-          BuildContext context,
-          Animation<double> animation,
-          Animation<double> secondaryAnimation,
-          Widget child,
-        ) {
-          return FadeTransition(
-            opacity: CurveTween(curve: Curves.easeInOutCirc).animate(animation),
-            child: child,
-          );
-        },
-      ),
+      child: const SinglePredictDetailPage(),
     ),
-    GoRoute(
+    goRoute(
+      name: 'multi-card',
+      path: '/multi-card',
+      child: const MultiCardDetail(),
+    ),
+    goRoute(
       name: 'multi-detail',
       path: '/multi-detail',
-      pageBuilder: (context, state) => CustomTransitionPage(
-        key: state.pageKey,
-        arguments: state.extra,
-        child: const MultiPredictDetailPage(),
-        transitionsBuilder: (
-          BuildContext context,
-          Animation<double> animation,
-          Animation<double> secondaryAnimation,
-          Widget child,
-        ) {
-          return FadeTransition(
-            opacity: CurveTween(curve: Curves.easeInOutCirc).animate(animation),
-            child: child,
-          );
-        },
-      ),
+      child: const MultiPredictDetailPage(),
     ),
-    GoRoute(
-      name: 'multi-card',
-      path: '/multi-card-detail',
-      pageBuilder: (context, state) => CustomTransitionPage(
-        key: state.pageKey,
-        arguments: state.extra,
-        child: const MultiCardDetail(),
-        transitionsBuilder: (
-          BuildContext context,
-          Animation<double> animation,
-          Animation<double> secondaryAnimation,
-          Widget child,
-        ) {
-          return FadeTransition(
-            opacity: CurveTween(curve: Curves.easeInOutCirc).animate(animation),
-            child: child,
-          );
-        },
-      ),
-    )
   ],
 );
