@@ -127,12 +127,13 @@ class ImageUploadPreview extends StatelessWidget {
                                 ),
                               ),
                               ButtonIconComponet(
-                                buttonRadius: 12,
+                                height: 55,
+                                buttonRadius: 55,
                                 buttonColor:
                                     data == null ? kPrimary : Colors.green,
                                 child: Padding(
                                   padding: const EdgeInsets.symmetric(
-                                    horizontal: 10,
+                                    horizontal: 20,
                                   ),
                                   child: Row(
                                     mainAxisAlignment:
