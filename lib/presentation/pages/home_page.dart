@@ -63,7 +63,7 @@ class _HomePageState extends State<HomePage> {
                         style: kHeading6,
                       ),
                       onTap: () {
-                        context.pushNamed('history');
+                        // context.pushNamed('history');
                         _scaffoldKey.currentState!.closeDrawer();
                       },
                     ),
