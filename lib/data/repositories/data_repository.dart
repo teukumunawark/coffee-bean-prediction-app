@@ -30,8 +30,8 @@ class DataRepositoryIMPL implements DomainRepository {
     try {
       final result = await dataSource.createSinglePredict(filePath);
       return Right(result.map((e) => e.toEntity()).toList());
-    } on ServerException {
-      return const Left(ServerFailure(''));
+    } on ServerException catch (e) {
+      return Left(ServerFailure(e.message));
     } on SocketException {
       return const Left(ConnectionFailure('Failed to connect to the network'));
     }
@@ -46,8 +46,8 @@ class DataRepositoryIMPL implements DomainRepository {
       return Right(
         result.map((e) => e.map((r) => r.toEntity()).toList()).toList(),
       );
-    } on ServerException {
-      return const Left(ServerFailure(''));
+    } on ServerException catch (e) {
+      return Left(ServerFailure(e.message));
     } on SocketException {
       return const Left(ConnectionFailure('Failed to connect to the network'));
     }
