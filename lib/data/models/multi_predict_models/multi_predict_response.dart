@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:predict_coffee/data/models/multi_predict_models/multi_predict_models.dart';
+
+import 'multi_predict_models.dart';
 
 class MultiPredictResponse extends Equatable {
   final List<MultiPredictions> list;
