@@ -22,49 +22,58 @@ class CoffeeDataSourceIMPL extends ApiDataSource {
 
   @override
   Future<List<PredictionModel>> createSinglePredict(filePath) async {
-    String fileName = filePath.split('/').last;
+    try {
+      String fileName = filePath.split('/').last;
 
-    FormData formData = FormData.fromMap({
-      'file': await MultipartFile.fromFile(filePath, filename: fileName),
-    });
+      FormData formData = FormData.fromMap({
+        'file': await MultipartFile.fromFile(filePath, filename: fileName),
+      });
 
-    Response response = await dio.post(
-      "$apiURL/singleprediction",
-      data: formData,
-      options: Options(contentType: "multipart/form-data"),
-    );
+      Response response = await dio.post(
+        "$apiURL/singleprediction",
+        data: formData,
+        options: Options(contentType: "multipart/form-data"),
+      );
 
-    if (response.statusCode == 200) {
-      return SinglePredictModels.fromJson(response.data).predict;
-    } else {
-      throw ServerException();
+      if (response.statusCode == 200) {
+        return SinglePredictModels.fromJson(response.data).predict;
+      } else {
+        throw ServerException();
+      }
+    } on DioError catch (e) {
+      String error = e.response?.data['message'];
+      throw ServerException(error);
     }
   }
 
   @override
-  Future<List<List<MultiPrediction>>> createMultiPredict(
-      List<String> filePaths) async {
-    List<MultipartFile> files = [];
+  Future<List<List<MultiPrediction>>> createMultiPredict(filePaths) async {
+    try {
+      List<MultipartFile> files = [];
 
-    for (String filePath in filePaths) {
-      String fileName = filePath.split('/').last;
-      files.add(await MultipartFile.fromFile(filePath, filename: fileName));
-    }
+      for (String filePath in filePaths) {
+        String fileName = filePath.split('/').last;
+        files.add(await MultipartFile.fromFile(filePath, filename: fileName));
+      }
 
-    FormData formData = FormData.fromMap({'file': files});
+      FormData formData = FormData.fromMap({'file': files});
 
-    Response response = await dio.post(
-      "$apiURL/multipredictions",
-      data: formData,
-      options: Options(contentType: "multipart/form-data"),
-    );
+      Response response = await dio.post(
+        "$apiURL/multipredictions",
+        data: formData,
+        options: Options(contentType: "multipart/form-data"),
+      );
 
-    if (response.statusCode == 200) {
-      return (response.data as List<dynamic>)
-          .map((data) => MultiPredictions.fromJson(data).prediction)
-          .toList();
-    } else {
-      throw ServerException();
+      if (response.statusCode == 200) {
+        return (response.data as List<dynamic>)
+            .map((data) => MultiPredictions.fromJson(data).prediction)
+            .toList();
+      } else {
+        throw ServerException();
+      }
+    } on DioError catch (e) {
+      String error = e.response?.data['message'];
+      throw ServerException(error);
     }
   }
 }

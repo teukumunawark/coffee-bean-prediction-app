@@ -40,13 +40,13 @@ final TextStyle kBodyText = GoogleFonts.poppins(
 );
 
 final kTextTheme = TextTheme(
-  headline2: kHeading2,
-  headline3: kHeading3,
-  headline4: kHeading4,
-  headline5: kHeading5,
-  headline6: kHeading6,
-  subtitle1: kSubtitle,
-  bodyText2: kBodyText,
+  displayMedium: kHeading2,
+  displaySmall: kHeading3,
+  headlineMedium: kHeading4,
+  headlineSmall: kHeading5,
+  titleLarge: kHeading6,
+  titleMedium: kSubtitle,
+  bodyMedium: kBodyText,
 );
 
 const kColorScheme = ColorScheme(
@@ -64,3 +64,12 @@ const kColorScheme = ColorScheme(
   onError: Colors.white,
   brightness: Brightness.dark,
 );
+
+class AppSize {
+  static const double padding = 20;
+  static const double marginTop = 15;
+}
+
+class AppRadius {
+  static const double radius = 12;
+}

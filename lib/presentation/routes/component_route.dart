@@ -12,6 +12,7 @@ GoRoute goRoute({
     pageBuilder: (context, state) => CustomTransitionPage(
       key: state.pageKey,
       child: child,
+      arguments: state.extra,
       transitionsBuilder: (
         BuildContext context,
         Animation<double> animation,
