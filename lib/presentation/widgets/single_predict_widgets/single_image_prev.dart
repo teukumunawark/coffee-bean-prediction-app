@@ -13,21 +13,21 @@ import '../../states_bloc/single_predict/single_predict_bloc.dart';
 import '../button_icon_widget.dart';
 
 class ImagePrevWidget extends StatelessWidget {
-  final SingleImageBloc imageBloc;
+  final SingleImageUpload singleImage;
   final XFile? data;
 
-  const ImagePrevWidget(this.data, this.imageBloc, {super.key});
+  const ImagePrevWidget(this.data, this.singleImage, {super.key});
 
   @override
   Widget build(BuildContext context) {
-    return ImageUploadPreview(data, imageBloc);
+    return ImageUploadPreview(data, singleImage);
   }
 }
 
 class ImageUploadPreview extends StatelessWidget {
   final XFile? data;
-  final SingleImageBloc imageBloc;
-  const ImageUploadPreview(this.data, this.imageBloc, {Key? key})
+  final SingleImageUpload singleImage;
+  const ImageUploadPreview(this.data, this.singleImage, {Key? key})
       : super(key: key);
 
   @override
@@ -35,8 +35,9 @@ class ImageUploadPreview extends StatelessWidget {
     return Container(
       height: 250,
       width: double.maxFinite,
+      margin: const EdgeInsets.only(top: AppSize.marginTop),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(AppRadius.radius),
         image: data == null
             ? const DecorationImage(
                 image: AssetImage('assets/images/img.jpg'),
@@ -56,11 +57,7 @@ class ImageUploadPreview extends StatelessWidget {
           }
 
           return Padding(
-            padding: const EdgeInsets.only(
-              left: 10,
-              right: 10,
-              bottom: 10,
-            ),
+            padding: const EdgeInsets.all(10),
             child: Stack(
               children: [
                 Align(
@@ -142,10 +139,11 @@ class ImageUploadPreview extends StatelessWidget {
                                         CrossAxisAlignment.center,
                                     children: [
                                       SvgPicture.asset(
-                                        'assets/images/choice-img.svg',
-                                        color:
+                                          'assets/images/choice-img.svg',
+                                          colorFilter: ColorFilter.mode(
                                             data == null ? kBackground : kWhite,
-                                      ),
+                                            BlendMode.srcIn,
+                                          )),
                                       const SizedBox(width: 10),
                                       Text(
                                         data == null
@@ -163,7 +161,7 @@ class ImageUploadPreview extends StatelessWidget {
                                   ),
                                 ),
                                 onPressed: () {
-                                  imageBloc.pickImage(ImageSource.gallery);
+                                  singleImage.pickImage(ImageSource.gallery);
                                 },
                               )
                             ],
@@ -194,7 +192,7 @@ class ResetButtonSection extends StatelessWidget {
         Align(
           alignment: Alignment.center,
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(AppRadius.radius),
             child: BackdropFilter(
               filter: ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0),
               child: Container(
@@ -204,7 +202,7 @@ class ResetButtonSection extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.bottomRight,
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(AppRadius.radius),
                     child: BackdropFilter(
                       filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
                       child: Container(
