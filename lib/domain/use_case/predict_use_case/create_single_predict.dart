@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:predict_coffee/domain/entities/predict_entity.dart';
-import 'package:predict_coffee/domain/repositories/domain_repository.dart';
-import 'package:predict_coffee/utils/failure.dart';
+import '../../entities/predict_entity.dart';
+import '../../repositories/domain_repository.dart';
+import '../../../utils/failure.dart';
 
 class CreateSinglePrediction {
   final DomainRepository repository;
