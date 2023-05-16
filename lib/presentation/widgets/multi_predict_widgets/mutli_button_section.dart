@@ -9,14 +9,11 @@ import '../../states_bloc/multi_predict/multi_predict_bloc.dart';
 import '../dialog_widget.dart';
 
 class MultiButtonSection extends StatelessWidget {
-  const MultiButtonSection({
-    Key? key,
-    this.data,
-    required this.multiImageBloc,
-  }) : super(key: key);
+  const MultiButtonSection({Key? key, this.data, required this.multiImages})
+      : super(key: key);
 
   final List<XFile>? data;
-  final MultiImageBloc multiImageBloc;
+  final MultipleImageUpload multiImages;
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +79,7 @@ class MultiButtonSection extends StatelessWidget {
               InkWell(
                 onTap: () {
                   data!.isEmpty
-                      ? prosesDialog(context, multiImageBloc).show(context)
+                      ? multiImageDialog(context, multiImages).show(context)
                       : context
                           .read<MultiPredictBloc>()
                           .add(OnMultiPredictEvent(filePaths));

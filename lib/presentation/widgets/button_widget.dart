@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:predict_coffee/utils/constants.dart';
+import '../../utils/constants.dart';
 
 class ButtonWidget extends StatelessWidget {
   const ButtonWidget({
