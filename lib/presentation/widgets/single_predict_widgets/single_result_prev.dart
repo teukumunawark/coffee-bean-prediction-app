@@ -94,7 +94,7 @@ class ResultSection extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(
-              width: 160,
+              width: 140,
               child: CircularPercentIndicator(
                 radius: 45,
                 percent: calculateScore!.toDouble(),
@@ -109,23 +109,25 @@ class ResultSection extends StatelessWidget {
                 progressColor: kPrimary,
               ),
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const SizedBox(height: 5),
-                const Text("Hasil Prediksi"),
-                className == null
-                    ? Text(
-                        'belum ada ...',
-                        style: kHeading4.copyWith(fontSize: 24),
-                      )
-                    : Text(
-                        toBeginningOfSentenceCase(className).toString(),
-                        style: kHeading3,
-                      ),
-                const SizedBox(height: 8),
-              ],
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const SizedBox(height: 5),
+                  const Text("Hasil Prediksi"),
+                  className == null
+                      ? Text(
+                          'belum ada ...',
+                          style: kHeading4.copyWith(fontSize: 24),
+                        )
+                      : Text(
+                          toBeginningOfSentenceCase(className).toString(),
+                          style: kHeading3,
+                        ),
+                  const SizedBox(height: 8),
+                ],
+              ),
             )
           ],
         ),
