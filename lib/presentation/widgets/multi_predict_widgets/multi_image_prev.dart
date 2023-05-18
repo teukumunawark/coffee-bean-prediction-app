@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:predict_coffee/domain/entities/multi_predict_entity.dart';
+import '../../../domain/entities/multi_predict_entity.dart';
 
 import '../../../utils/constants.dart';
 import '../../states_bloc/image_upload_bloc.dart';
@@ -15,11 +15,11 @@ class MultiImagePrev extends StatelessWidget {
   const MultiImagePrev({
     Key? key,
     this.data,
-    required this.multiImageBloc,
+    required this.multiImages,
   }) : super(key: key);
 
   final List<XFile>? data;
-  final MultiImageBloc multiImageBloc;
+  final MultipleImageUpload multiImages;
 
   @override
   Widget build(BuildContext context) {
@@ -31,14 +31,14 @@ class MultiImagePrev extends StatelessWidget {
           return MultiImagePrevWidgets(
             data: data,
             predictData: predictData,
-            multiImageBloc: multiImageBloc,
+            multiImageBloc: multiImages,
           );
         }
 
         return MultiImagePrevWidgets(
           data: data,
           predictData: const [],
-          multiImageBloc: multiImageBloc,
+          multiImageBloc: multiImages,
         );
       },
     );
@@ -54,13 +54,14 @@ class MultiImagePrevWidgets extends StatelessWidget {
   }) : super(key: key);
 
   final List<XFile>? data;
-  final MultiImageBloc multiImageBloc;
+  final MultipleImageUpload multiImageBloc;
   final List<List<MultiPredictEntities>> predictData;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 250,
+      margin: const EdgeInsets.only(top: AppSize.marginTop),
       decoration: BoxDecoration(
         color: kSecondery,
         borderRadius: BorderRadius.circular(12),
@@ -163,7 +164,7 @@ class ImageUploadButton extends StatelessWidget {
     required this.icon,
   }) : super(key: key);
 
-  final MultiImageBloc multiImageBloc;
+  final MultipleImageUpload multiImageBloc;
   final Function() onPressed;
   final String title;
   final IconData icon;
