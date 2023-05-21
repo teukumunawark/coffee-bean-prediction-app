@@ -1,15 +1,15 @@
 import 'package:go_router/go_router.dart';
-import 'package:predict_coffee/presentation/pages/information_page.dart';
-import 'package:predict_coffee/presentation/pages/multi_detail_card.dart';
-import 'package:predict_coffee/presentation/pages/multi_predict_detail_page.dart';
-import 'package:predict_coffee/presentation/pages/single_predict_detail_page.dart';
-import 'package:predict_coffee/presentation/pages/home_page.dart';
-import 'package:predict_coffee/presentation/pages/login_page.dart';
-import 'package:predict_coffee/presentation/pages/multi_predict_page.dart';
-import 'package:predict_coffee/presentation/pages/register_page.dart';
-import 'package:predict_coffee/presentation/pages/single_predict_page.dart';
-import 'package:predict_coffee/presentation/pages/splash_page.dart';
-import 'package:predict_coffee/presentation/routes/component_route.dart';
+import '../pages/information_page.dart';
+import '../pages/multi_detail_card.dart';
+import '../pages/multi_predict_detail_page.dart';
+import '../pages/single_predict_detail_page.dart';
+import '../pages/home_page.dart';
+import '../pages/login_page.dart';
+import '../pages/multi_predict_page.dart';
+import '../pages/register_page.dart';
+import '../pages/single_predict_page.dart';
+import '../pages/splash_page.dart';
+import 'component_route.dart';
 
 import '../pages/history_page.dart';
 
