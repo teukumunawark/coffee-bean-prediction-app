@@ -84,13 +84,6 @@ class ImageUploadPreview extends StatelessWidget {
                                 padding: const EdgeInsets.only(left: 15),
                                 child: Row(
                                   children: [
-                                    SvgPicture.asset(
-                                        'assets/images/img-icon.svg'),
-                                    data == null
-                                        ? const SizedBox(width: 15)
-                                        : const SizedBox(
-                                            width: 10,
-                                          ),
                                     Container(
                                       margin: const EdgeInsets.only(top: 7),
                                       height: double.maxFinite,
