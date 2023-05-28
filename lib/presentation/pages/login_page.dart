@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:predict_coffee/presentation/widgets/auth_widgets/text_field_widget.dart';
-import 'package:predict_coffee/presentation/widgets/button_widget.dart';
-import 'package:predict_coffee/utils/constants.dart';
+import '../widgets/auth_widgets/text_field_widget.dart';
+import '../widgets/button_widget.dart';
+import '../../utils/constants.dart';
 
 import '../../data/models/user_models/user_model.dart';
 import '../states_bloc/auth/auth_bloc.dart';
