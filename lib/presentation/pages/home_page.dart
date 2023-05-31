@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:predict_coffee/presentation/pages/multi_predict_page.dart';
-import 'package:predict_coffee/presentation/pages/single_predict_page.dart';
-import 'package:predict_coffee/presentation/states_bloc/multi_predict/multi_predict_bloc.dart';
-import 'package:predict_coffee/presentation/states_bloc/single_predict/single_predict_bloc.dart';
+import 'multi_predict_page.dart';
+import 'single_predict_page.dart';
+import '../states_bloc/multi_predict/multi_predict_bloc.dart';
+import '../states_bloc/single_predict/single_predict_bloc.dart';
 
 import '../../utils/constants.dart';
 import '../states_bloc/auth/auth_bloc.dart';

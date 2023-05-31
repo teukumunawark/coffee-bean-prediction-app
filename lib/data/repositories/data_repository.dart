@@ -1,17 +1,16 @@
 import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:predict_coffee/data/services/firebase_services.dart';
-import 'package:predict_coffee/domain/entities/multi_predict_entity.dart';
-import 'package:predict_coffee/domain/entities/predict_entity.dart';
+import '../services/firebase_services.dart';
+import '../../domain/entities/multi_predict_entity.dart';
+import '../../domain/entities/predict_entity.dart';
 import 'package:dartz/dartz.dart';
-import 'package:predict_coffee/domain/entities/user_entity.dart';
-import 'package:predict_coffee/domain/repositories/domain_repository.dart';
-import 'package:predict_coffee/utils/failure.dart';
+import '../../domain/entities/user_entity.dart';
+import '../../domain/repositories/domain_repository.dart';
+import '../../utils/failure.dart';
 
 import '../../utils/exception.dart';
 import '../api/prediction_api.dart';
-import '../models/single_predict_models/single_predict_models.dart';
 import '../models/user_models/user_model.dart';
 
 class DataRepositoryIMPL implements DomainRepository {
@@ -96,18 +95,6 @@ class DataRepositoryIMPL implements DomainRepository {
       return Right(result);
     } on FirebaseAuthException {
       return const Left(FirebaseFailure(''));
-    } on FirebaseException catch (e) {
-      return Left(FirebaseFailure('$e'));
-    }
-  }
-
-  @override
-  Future<Either<Failure, void>> createHistory(
-    List<PredictionModel> prediction,
-  ) async {
-    try {
-      final result = await firebaseDataSource.createHistory(prediction);
-      return Right(result);
     } on FirebaseException catch (e) {
       return Left(FirebaseFailure('$e'));
     }
