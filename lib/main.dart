@@ -36,9 +36,6 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (_) => injection.locator<AuthBloc>(),
         ),
-        BlocProvider(
-          create: (_) => injection.locator<HistoryBloc>(),
-        ),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
