@@ -12,7 +12,6 @@ import 'domain/use_case/user_use_case/get_current_user.dart';
 import 'presentation/states_bloc/auth/auth_bloc.dart';
 import 'presentation/states_bloc/multi_predict/multi_predict_bloc.dart';
 import 'presentation/states_bloc/single_predict/single_predict_bloc.dart';
-import 'domain/use_case/user_use_case/create_history.dart';
 import 'domain/use_case/user_use_case/user_login.dart';
 import 'domain/use_case/user_use_case/user_logout.dart';
 import 'domain/use_case/user_use_case/user_register.dart';
@@ -23,7 +22,6 @@ Future<void> init() async {
   // BLOC STATE INJECTION
   locator.registerFactory(() => SinglePredictBloc(locator()));
   locator.registerFactory(() => MultiPredictBloc(locator()));
-  locator.registerFactory(() => HistoryBloc(locator()));
   locator.registerFactory(
     () => AuthBloc(locator(), locator(), locator(), locator()),
   );
@@ -35,7 +33,6 @@ Future<void> init() async {
   locator.registerLazySingleton(() => LoginUser(locator()));
   locator.registerLazySingleton(() => GetCurrentUser(locator()));
   locator.registerLazySingleton(() => LogoutUser(locator()));
-  locator.registerLazySingleton(() => CreateHistory(locator()));
 
   // REPOSITORY INJECTION
   locator.registerLazySingleton<DomainRepository>(
