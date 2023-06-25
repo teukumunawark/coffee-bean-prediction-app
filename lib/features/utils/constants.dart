@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+const apiURL = 'https://7d3d-180-241-46-84.ngrok-free.app';
+
 const Color kBackground = Color(0xff131313);
 const Color kPrimary = Color(0xffFFF500);
 const Color kSecondery = Color(0xff2C2D35);
+const Color kSoftBlack = Color(0xff191A1D);
 const Color kGrey = Color(0xffD9D9D9);
 const Color kWhite = Colors.white;
 
