@@ -6,9 +6,8 @@ import 'features/data/datasources/remote_data_source.dart';
 import 'features/data/repositories_impl/repository_impl.dart';
 import 'features/domain/repositories/repository.dart';
 import 'features/domain/usecases/create_multi_classify_coffee_beans.dart';
-import 'features/domain/usecases/create_single_classify_coffee_bean.dart';
 import 'features/presentation/bloc/coffee_beans_bloc.dart';
-import 'features/presentation/bloc/multiple_image_capture_bloc.dart';
+import 'features/presentation/bloc/image_picker_bloc.dart';
 
 GetIt locator = GetIt.I;
 
@@ -17,18 +16,15 @@ Future<void> setup() async {
   locator.registerFactory(
     () => ClassificationBloc(
       locator(),
-      locator(),
     ),
   );
 
   locator.registerFactory(
-    () => MultipleImageBloc(locator()),
+    () => ImagePickerBloc(
+      locator(),
+    ),
   );
 
-  // USE CASE INJECTION
-  locator.registerLazySingleton(
-    () => CreateSingleClassifyCoffeeBean(locator()),
-  );
   locator.registerLazySingleton(
     () => CreateMultiClassifyCoffeeBean(locator()),
   );
