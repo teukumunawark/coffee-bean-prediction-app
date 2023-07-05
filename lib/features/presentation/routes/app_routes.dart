@@ -1,5 +1,5 @@
 import 'package:go_router/go_router.dart';
-import 'package:predict_coffee/features/presentation/pages/camera_page.dart';
+import '../pages/camera_page.dart';
 import '../pages/detail_page.dart';
 import '../pages/home_page.dart';
 import 'component_route.dart';
