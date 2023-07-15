@@ -1,22 +1,20 @@
-import 'presentation/states_bloc/single_predict/single_predict_bloc.dart';
-import 'presentation/states_bloc/multi_predict/multi_predict_bloc.dart';
-import 'presentation/states_bloc/auth/auth_bloc.dart';
-import 'utils/constants.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'presentation/routes/app_route.dart';
 import 'package:flutter/material.dart';
-import 'firebase_options.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'injection.dart' as injection;
+import 'package:camera/camera.dart';
+import 'features/presentation/bloc/coffee_beans_bloc.dart';
+import 'features/presentation/bloc/multiple_image_capture_bloc.dart';
+import 'features/presentation/routes/app_routes.dart';
+import 'features/utils/constants.dart';
+import 'dependency_injection.dart' as di;
+
+late List<CameraDescription> cameras;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await di.setup();
 
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-
-  await injection.init();
-
+  cameras = await availableCameras();
   runApp(const MyApp());
 }
 
@@ -28,25 +26,23 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (_) => injection.locator<SinglePredictBloc>(),
+          create: (_) => di.locator<ClassificationBloc>(),
         ),
         BlocProvider(
-          create: (_) => injection.locator<MultiPredictBloc>(),
-        ),
-        BlocProvider(
-          create: (_) => injection.locator<AuthBloc>(),
+          create: (_) => di.locator<MultipleImageBloc>(),
         ),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
-        title: 'Coffee Predict App',
-        theme: ThemeData.dark().copyWith(
-          primaryColor: kBackground,
-          scaffoldBackgroundColor: kBackground,
+        title: 'Smart Bean',
+        theme: ThemeData(
+          colorScheme: kColorScheme,
+          useMaterial3: true,
           textTheme: kTextTheme,
-          colorScheme: kColorScheme.copyWith(background: kBackground),
         ),
-        routerConfig: router,
+        routerDelegate: router.routerDelegate,
+        routeInformationParser: router.routeInformationParser,
+        routeInformationProvider: router.routeInformationProvider,
       ),
     );
   }
