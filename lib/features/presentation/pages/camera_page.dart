@@ -3,11 +3,11 @@ import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../routes/app_routes.dart';
-import '../../utils/constants.dart';
 
 import '../../../main.dart';
+import '../../utils/constants.dart';
 import '../bloc/image_picker_bloc.dart';
+import '../routes/app_routes.dart';
 
 class CameraPage extends StatefulWidget {
   const CameraPage({super.key});
