@@ -1,20 +1,27 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:camera/camera.dart';
+import 'dependency_injection.dart' as di;
 import 'features/presentation/bloc/coffee_beans_bloc.dart';
-import 'features/presentation/bloc/multiple_image_capture_bloc.dart';
+import 'features/presentation/bloc/image_picker_bloc.dart';
 import 'features/presentation/routes/app_routes.dart';
 import 'features/utils/constants.dart';
-import 'dependency_injection.dart' as di;
 
 late List<CameraDescription> cameras;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await di.setup();
 
   cameras = await availableCameras();
+
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
+
   runApp(const MyApp());
 }
 
@@ -29,7 +36,7 @@ class MyApp extends StatelessWidget {
           create: (_) => di.locator<ClassificationBloc>(),
         ),
         BlocProvider(
-          create: (_) => di.locator<MultipleImageBloc>(),
+          create: (_) => di.locator<ImagePickerBloc>(),
         ),
       ],
       child: MaterialApp.router(
