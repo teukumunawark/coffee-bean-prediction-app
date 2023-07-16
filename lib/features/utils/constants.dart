@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-const apiURL = 'https://7d3d-180-241-46-84.ngrok-free.app';
+const apiURL = 'http://34.16.134.181:5000';
 
 const Color kBackground = Color(0xff131313);
 const Color kPrimary = Color(0xffFFF500);
